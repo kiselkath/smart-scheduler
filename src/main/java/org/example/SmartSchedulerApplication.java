@@ -1,7 +1,10 @@
 package org.example;
 
+import org.example.model.PersonRepository;
+import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
 
 /**
  * Hello world!
@@ -15,4 +18,12 @@ public class SmartSchedulerApplication
     {
         SpringApplication.run(SmartSchedulerApplication.class, args);
     }
+    @Bean
+    public CommandLineRunner dataLoader(PersonRepository repo) {
+        return args -> {
+            repo.save(new Person("Alice"));
+            repo.save(new Person("Bob"));
+        };
+    }
+
 }
