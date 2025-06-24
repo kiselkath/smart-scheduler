@@ -26,14 +26,13 @@ public class PersonController {
         return repo.save(person);
     }
 
-    @DeleteMapping
+    @DeleteMapping("/{id}")
     public ResponseEntity<Object> deletePerson(@PathVariable Long id){
         if (repo.existsById(id)) {
             repo.deleteById(id);
-            return ResponseEntity.noContent().build(); // HTTP 204
+            return ResponseEntity.noContent().build(); // 204 No Content
         } else {
-            return ResponseEntity.notFound().build(); // HTTP 404
+            return ResponseEntity.notFound().build(); // 404 Not Found
         }
     }
-
 }
